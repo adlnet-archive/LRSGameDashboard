@@ -13,49 +13,6 @@ function InitLRSConnection()
 	tc_lrs = TCDriver_GetLRSObject();
 }
 
-//Switch to the start page
-function ShowStartPage()
-{
-    $.mobile.changePage($("#LiveStream"),{transition:"slide"});	
-}
-
-//Close a popup dialog
-function jqmDialogClose(){
-    $('#popup').stop();
-    $('#popup').remove();
-}
-//Open a popup dialog
-function jqmDialogOpen(message) {
-    $('#popup').stop();
-    $('#popup').remove();
-    $("<div id='popup' style = 'border-width:2px; border-color:black; border-style:solid;height:70%;top:15%;width:80%;left:10%;text-align:center;vertical-align:center;position:fixed' class='ui-loader ui-overlay-shadow ui-body-c ui-corner-all'><h1 style='top:50%;left:0%;height:10em;margin-top:-5em;width:100%;position:absolute;margin-top:auto;margin-bottom:auto;line-height:100%'>" + message + "</br><img src='./js/images/ajax-loader.gif'></h1></img></div>")
-    .css({
-	display: "block",
-	opacity: 0.96
-    })
-    .appendTo("body");
-}
-//Open a times popup dialog
-function jqmSimpleMessage(message,callback) {
-    $('#popup').stop();
-    $('#popup').remove();
-    $("<div id='popup' style = 'border-width:2px; border-color:black; border-style:solid;height:70%;top:15%;width:80%;left:10%;text-align:center;vertical-align:center;position:fixed' class='ui-loader ui-overlay-shadow ui-body-c ui-corner-all'><h1 style='top:50%;left:0%;height:10em;margin-top:-5em;width:100%;position:absolute;margin-top:auto;margin-bottom:auto;line-height:100%'>" + message + "</h1></div>")
-    .css({
-	display: "block",
-	opacity: 0.96
-
-    })
-    .appendTo("body").delay(3200).css('animation','fadeout2 2s').css('-moz-animation','fadeout2 2s').css('-webkit-animation','fadeout2 2s');
-
-    window.setTimeout(function(){
-	$('#popup').remove();
-	if(callback)
-	    callback();
-    },2000
-    )
-    ;
-}
-
 //Used when sorting list of scores
 function compare(x,y)
 {
