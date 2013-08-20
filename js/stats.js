@@ -75,7 +75,7 @@ function PollForEventsCallback(res)
 		    $('#EventList').html(newline + listcode);
 		    
 		    //determine total players - TotalPlayers
-		    if(statements[i].verb.id == verbs.registered.id)
+		    if(statements[i].verb.id == ADL.verbs.registered.id)
 		    {
 		        totalPlayers++;
 		        var playerlistcode = $('#PlayerList').html();
@@ -84,7 +84,7 @@ function PollForEventsCallback(res)
 		    }
 		    
 		    //correct answers - CorrectAnswerList
-		    if(statements[i].verb.id == verbs.answered.id)
+		    if(statements[i].verb.id == ADL.verbs.answered.id)
 		    {
 		        //Build graph data
 		        BuildBarGraphData(statements[i]);
@@ -101,7 +101,7 @@ function PollForEventsCallback(res)
 		    }
 		    
 		    //solved - PuzzleSolversList
-		    if(statements[i].verb.id == verbs.completed.id)
+		    if(statements[i].verb.id == ADL.verbs.completed.id)
 		    {
 		        totalSolveAttempts++;
 		        if(statements[i].result.success == true)
@@ -309,7 +309,7 @@ function PopulateLeaderBoardLarge()
 {
     try{
 	    InitLRSConnection();
-        TCDriver_GetStatements(tc_lrs,null,verbs.answered.id,null,PopulateLeaderBoardLargeCallback);
+        TCDriver_GetStatements(tc_lrs,null,ADL.verbs.answered.id,null,PopulateLeaderBoardLargeCallback);
     }catch(e)
     {
 	    // alert(JSON.stringify(e));
