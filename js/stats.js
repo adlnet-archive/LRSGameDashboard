@@ -56,7 +56,13 @@ function PollForEventsCallback(res)
         {
             //show raw stream
             var listcode = $('#EventList').html();
-            var newline = "<li>"+ statements[i].actor.name + " " +  statements[i].verb.display['en-US'] + " " + statements[i].object.definition.name['en-US'] +"</li>";
+            var actname = statements[i].actor.name || "anonymous" + i;
+            var verbname = statements[i].verb.display['en-US'] || statements[i].verb.id;
+            if (statements[i].object.definition)
+                var actname = statements[i].object.definition.name['en-US'] || statements[i].object.id;
+            else
+                var actname = statements[i].object.id;
+            var newline = "<li>"+ actname + " " + verbname + " " + actname +"</li>";
             $('#EventList').html(newline + listcode);
             
             //determine total players - TotalPlayers
@@ -76,7 +82,7 @@ function PollForEventsCallback(res)
                 totalAnswers++;
                 
                 //show stream
-                if(statements[i].result.success == true)
+                if(statements[i].result && statements[i].result.success)
                 {
                     totalCorrectAnswers++;
                     var correctanswerlistcode = $('#CorrectAnswerList').html();
@@ -165,7 +171,7 @@ function BuildBarGraphData(stmt)
     }
 
     //increment counts for each question
-    if(stmt.result.success == true)
+    if(stmt.result && stmt.result.success)
     {
         CorrectAnswerHash[QuestionIDHash[stmt.object.id]] += 1;
     }
